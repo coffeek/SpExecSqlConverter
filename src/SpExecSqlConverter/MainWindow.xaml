@@ -24,7 +24,7 @@
     </Grid.RowDefinitions>
     <avalonEdit:TextEditor
       xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-      Name="textEditor"
+      Name="TextEditor"
       SyntaxHighlighting="TSQL"
       FontFamily="Consolas"
       FontSize="10pt" 
@@ -41,11 +41,12 @@
             Command="{StaticResource ConvertCommand}"
             Margin="5"
             Padding="5,3" />
-    <CheckBox x:Name="convertOnPasteCheckbox" 
+    <CheckBox x:Name="ConvertOnPasteCheckbox" 
               Content="Конвертировать при вставке из буфера обмена" 
               HorizontalAlignment="Left" 
               Margin="5,0,0,0" 
               Grid.Row="1" 
+              Grid.Column="0"
               VerticalAlignment="Center" 
               IsChecked="{Binding Default.ConvertOnPasteChecked, Source={StaticResource Settings}}" />
   </Grid>

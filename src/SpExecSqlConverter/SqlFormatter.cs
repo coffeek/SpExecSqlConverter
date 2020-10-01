@@ -8,10 +8,6 @@ namespace SpExecSqlConverter
   internal class FormatSqlException : Exception
   {
     public IList<ParseError> ParseErrors { get; set; }
-
-    public FormatSqlException()
-    {
-    }
   }
 
   internal class SqlFormatter

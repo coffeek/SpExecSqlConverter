@@ -13,24 +13,24 @@ namespace SpExecSqlConverter
   public partial class MainWindow : Window
   {
     private readonly Lazy<PlainSqlConverter> converter = new Lazy<PlainSqlConverter>();
-    private PlainSqlConverter Converter => converter.Value;
+    private PlainSqlConverter Converter => this.converter.Value;
 
     private readonly Lazy<SqlFormatter> formatter = new Lazy<SqlFormatter>();
-    private SqlFormatter Formatter => formatter.Value;
+    private SqlFormatter Formatter => this.formatter.Value;
 
     public static readonly RoutedUICommand ConvertCommand = new RoutedUICommand(
       "Convert", "Convert", typeof(MainWindow));
 
     public MainWindow()
     {
-      InitializeComponent();
-      LoadSettings();
-      DataObject.AddPastingHandler(this.textEditor, this.OnPasteHandler);
+      this.InitializeComponent();
+      this.LoadSettings();
+      DataObject.AddPastingHandler(this.TextEditor, this.OnPasteHandler);
     }
 
     private void OnPasteHandler(object sender, DataObjectPastingEventArgs e)
     {
-      if (this.convertOnPasteCheckbox.IsChecked == true)
+      if (this.ConvertOnPasteCheckbox.IsChecked == true)
       {
         if (e.DataObject.GetData(typeof(string)) is string sourceData)
           e.DataObject = new DataObject(DataFormats.Text, this.ConvertQuery(sourceData));
@@ -46,7 +46,7 @@ namespace SpExecSqlConverter
 
     private void ConvertCommandExecuted(object sender, ExecutedRoutedEventArgs e)
     {
-      textEditor.Text = this.ConvertQuery(textEditor.Text);
+      this.TextEditor.Text = this.ConvertQuery(this.TextEditor.Text);
     }
 
     private string ConvertQuery(string sqlCommand)

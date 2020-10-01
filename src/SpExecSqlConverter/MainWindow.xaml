@@ -1,0 +1,52 @@
+﻿<Window x:Class="SpExecSqlConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Конвертер sp_executesql"
+        SnapsToDevicePixels="True" 
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Closing="Window_Closing">
+  <Window.Resources>
+    <RoutedUICommand x:Key="ConvertCommand" Text="Convert" />
+  </Window.Resources>
+  <Window.CommandBindings>
+    <CommandBinding Command="{StaticResource ConvertCommand}" Executed="ConvertCommandExecuted"/>
+  </Window.CommandBindings>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <avalonEdit:TextEditor
+      xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+      Name="textEditor"
+      SyntaxHighlighting="TSQL"
+      FontFamily="Consolas"
+      FontSize="10pt" 
+      Grid.ColumnSpan="2" 
+      ShowLineNumbers="True" 
+      HorizontalScrollBarVisibility="Auto" 
+      VerticalScrollBarVisibility="Auto" 
+      BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" 
+      BorderThickness="0,0,0,1">
+    </avalonEdit:TextEditor>
+    <Button Grid.Row="1" 
+            Grid.Column="1" 
+            Content="Преобразовать"
+            Command="{StaticResource ConvertCommand}"
+            Margin="5"
+            Padding="5,3" />
+    <CheckBox x:Name="convertOnPasteCheckbox" 
+              Content="Конвертировать при вставке из буфера обмена" 
+              HorizontalAlignment="Left" 
+              Margin="5,0,0,0" 
+              Grid.Row="1" 
+              VerticalAlignment="Center" 
+              IsChecked="{Binding Default.ConvertOnPasteChecked, Source={StaticResource Settings}}" />
+  </Grid>
+</Window>

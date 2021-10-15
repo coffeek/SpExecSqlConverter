@@ -2,7 +2,7 @@
 
 namespace SpExecSqlConverter
 {
-  public class DisposableObject : IDisposable
+  public sealed class DisposableObject : IDisposable
   {
     #region IDisposable
 
@@ -16,7 +16,7 @@ namespace SpExecSqlConverter
       GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
       if (!this.disposed)
       {

@@ -8,7 +8,7 @@ namespace SpExecSqlConverter
   /// </summary>
   internal class PlainSqlConverter
   {
-    private static readonly Regex ExecSqlPattern = new Regex(
+    private static readonly Regex execSqlPattern = new Regex(
       @"\s*(?:exec|execute)\s+sp_executesql\s+N'((?:''|[^'])*)'\s*,\s*N'((?:''|[^'])*)'\s*,\s*(.*)",
       RegexOptions.Compiled | RegexOptions.Singleline);
 
@@ -19,7 +19,7 @@ namespace SpExecSqlConverter
     /// <returns>Преобразованный запрос.</returns>
     public string ConvertFromSpExecSql(string query)
     {
-      var m = ExecSqlPattern.Match(query);
+      var m = execSqlPattern.Match(query);
       if (!m.Success)
         return query;
 
